@@ -141,9 +141,10 @@ public class NumberTriangle {
         while (line != null) {
 
             // remove when done; this line is included so running starter code prints the contents of the file
-//            System.out.println(line);
+            System.out.println(line);
+            st = new StringTokenizer(line);
             // right middle left cases
-
+            newTriangles = new ArrayList<>();
             int count = st.countTokens();
             NumberTriangle prev = null;
             for (int i = 0; i < count - 1; i++) {
@@ -154,10 +155,11 @@ public class NumberTriangle {
                 } else {
                     triangles.get(i).left = prev;
                     triangles.get(i).right = new NumberTriangle(Integer.parseInt(st.nextToken()));
+                    prev = triangles.get(i).right;
                 }
 
                 newTriangles.add(triangles.get(i).left);
-                if (i == count - 1) {
+                if (i == count - 2) {
                     newTriangles.add(triangles.get(i).right);
                 }
             }
